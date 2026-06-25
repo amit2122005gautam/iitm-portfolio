@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amit Gautam | IITM BS Portfolio</title>
+  <meta name="description" content="Portfolio of Amit Gautam — IIT Madras BS Data Science student, developer & problem solver." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0e1a;
+      --bg2: #0f1629;
+      --bg3: #141d35;
+      --accent: #6366f1;
+      --accent2: #8b5cf6;
+      --accent3: #06b6d4;
+      --gold: #f59e0b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --glow: 0 0 40px rgba(99,102,241,0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Animated background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(99,102,241,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 60% at 80% 80%, rgba(139,92,246,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 60% 20%, rgba(6,182,212,0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(10,14,26,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #a5b4fc;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: fadeSlideDown 0.6s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #6ee7b7;
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeSlideDown 0.6s 0.1s ease both;
+    }
+
+    .hero h1 .name-gradient {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 40%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeSlideDown 0.6s 0.2s ease both;
+    }
+
+    .hero-email-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(6,182,212,0.08);
+      border: 1px solid rgba(6,182,212,0.25);
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      margin-bottom: 2.5rem;
+      animation: fadeSlideDown 0.6s 0.3s ease both;
+    }
+    .hero-email-card .label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hero-email-card .email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      color: #67e8f9;
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeSlideDown 0.6s 0.4s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(99,102,241,0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: #a5b4fc;
+      transform: translateY(-2px);
+    }
+
+    /* ── Scroll indicator ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeSlideDown 1s 0.8s ease both;
+    }
+    .scroll-hint .arrow {
+      width: 20px; height: 20px;
+      border-right: 2px solid var(--muted);
+      border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg);
+      animation: bounce 2s infinite;
+    }
+
+    /* ── Section ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 5rem;
+    }
+    .stat-item {
+      background: var(--bg2);
+      padding: 1.75rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .stat-item:hover { background: var(--bg3); }
+    .stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      background: linear-gradient(135deg, var(--accent), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    /* ── Cards grid ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(99,102,241,0.3);
+      transform: translateY(-4px);
+      box-shadow: var(--glow);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .skill-group-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.2);
+      color: #a5b4fc;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Contact / Verification Card ── */
+    .verify-section {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .verify-card {
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(6,182,212,0.08));
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 20px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .verify-card .info { flex: 1; min-width: 250px; }
+    .verify-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .verify-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.9rem;
+    }
+    .verify-badge {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(6,182,212,0.3);
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      min-width: 280px;
+    }
+    .verify-badge .vb-label {
+      font-size: 0.7rem;
+      color: var(--accent3);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .verify-badge .vb-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: #67e8f9;
+      font-weight: 600;
+    }
+    .verify-badge .vb-inst {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(6px); }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .verify-card { padding: 2rem; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-logo">amit.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<div class="hero" id="about">
+  <div class="hero-badge">🎓 IIT Madras · BS Data Science</div>
+
+  <h1>
+    Hi, I'm <span class="name-gradient">Amit Gautam</span><br/>
+    Data Scientist & Developer
+  </h1>
+
+  <p class="hero-sub">
+    Passionate about turning raw data into meaningful insights.
+    Building intelligent systems, solving real-world problems,
+    and continuously learning at the intersection of statistics &amp; software.
+  </p>
+
+  <!-- Email verified by IITM — wrapped for CloudFlare -->
+  <div class="hero-email-card">
+    <span class="label">📧 IITM Student Email</span>
+    <span class="email">
+      <!--email_off-->24f2007687@ds.study.iitm.ac.in<!--/email_off-->
+    </span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">🚀 View My Work</a>
+    <a href="#contact" class="btn btn-outline">📬 Get in Touch</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="arrow"></div>
+  </div>
+</div>
+
+<!-- ── Stats ── -->
+<section>
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">DS</div>
+      <div class="stat-label">Data Science</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">ML</div>
+      <div class="stat-label">Machine Learning</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">IIT</div>
+      <div class="stat-label">Madras</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24</div>
+      <div class="stat-label">Batch Year</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Curiosity</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ── -->
+<section id="projects">
+  <div class="section-label">Featured Work</div>
+  <h2 class="section-title">Projects &amp; Achievements</h2>
+  <p class="section-desc">
+    A selection of data science and software projects built during my BS program
+    and independent learning journey.
+  </p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon" style="background:rgba(99,102,241,0.15);">📊</div>
+      <h3 class="card-title">Data Analysis Pipeline</h3>
+      <p class="card-desc">
+        End-to-end ETL pipeline for processing large datasets, performing statistical
+        analysis, and generating automated visual reports with Python &amp; Pandas.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(139,92,246,0.15);">🤖</div>
+      <h3 class="card-title">ML Classification Model</h3>
+      <p class="card-desc">
+        Trained and evaluated multiple classifiers (Random Forest, XGBoost, SVM)
+        on real-world datasets with hyperparameter tuning and cross-validation.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(6,182,212,0.15);">🌐</div>
+      <h3 class="card-title">DevOps Automation Tools</h3>
+      <p class="card-desc">
+        Shell scripts and Python utilities for file system operations, Git history
+        analysis, configuration management, and CI/CD pipeline helpers.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(245,158,11,0.15);">📈</div>
+      <h3 class="card-title">Statistical Inference Study</h3>
+      <p class="card-desc">
+        Deep dive into hypothesis testing, Bayesian inference, and probability
+        distributions — with practical implementations in R and Python.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(16,185,129,0.15);">🗃️</div>
+      <h3 class="card-title">Database Management System</h3>
+      <p class="card-desc">
+        Designed normalized relational schemas, wrote complex SQL queries, and
+        built a Flask API layer for a student management database.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(239,68,68,0.15);">🔍</div>
+      <h3 class="card-title">Web Scraping &amp; NLP</h3>
+      <p class="card-desc">
+        Scraped and cleaned textual data from public sources, applied NLP
+        preprocessing, and built a sentiment analysis pipeline using scikit-learn.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ── -->
+<section id="skills">
+  <div class="section-label">Technical Expertise</div>
+  <h2 class="section-title">Skills &amp; Technologies</h2>
+  <p class="section-desc">
+    Tools and technologies I work with daily throughout my IITM curriculum and
+    personal projects.
+  </p>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">🐍 Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">R</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Bash</span>
+        <span class="skill-tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">📦 Data & ML</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">scikit-learn</span>
+        <span class="skill-tag">Matplotlib</span>
+        <span class="skill-tag">Seaborn</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">🛠️ Dev Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Jupyter</span>
+        <span class="skill-tag">Linux</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">🌐 Web & APIs</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Flask</span>
+        <span class="skill-tag">HTML/CSS</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">JSON</span>
+        <span class="skill-tag">GitHub Pages</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Verification ── -->
+<div class="verify-section" id="contact">
+  <div class="verify-card">
+    <div class="info">
+      <h3>🎓 IITM Verified Student</h3>
+      <p>
+        I am enrolled in the <strong>IIT Madras BS in Data Science &amp; Applications</strong>
+        program. This page is my official portfolio submission. The email below
+        is my institutional identifier, verified through the IITM student portal.
+      </p>
+    </div>
+    <div class="verify-badge">
+      <div class="vb-label">✅ Institutional Email</div>
+      <div class="vb-email">
+        <!--email_off-->24f2007687@ds.study.iitm.ac.in<!--/email_off-->
+      </div>
+      <div class="vb-inst">IIT Madras · BS Data Science</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    Built with ♥ by <span>Amit Gautam</span> ·
+    Student ID <span>24f2007687</span> ·
+    IIT Madras BS Data Science
+  </p>
+  <p style="margin-top:0.5rem; font-size:0.75rem;">
+    Contact:
+    <!--email_off-->24f2007687@ds.study.iitm.ac.in<!--/email_off-->
+  </p>
+</footer>
+
+</body>
+</html>
