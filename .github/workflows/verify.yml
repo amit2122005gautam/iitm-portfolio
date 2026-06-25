@@ -1,0 +1,31 @@
+name: IITM Student Verification
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 24f2007687@ds.study.iitm.ac.in
+        run: echo "Hello from Amit Gautam - IITM BS Data Science student 24f2007687@ds.study.iitm.ac.in"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display student info
+        run: |
+          echo "================================"
+          echo "Student  : Amit Gautam"
+          echo "Email    : 24f2007687@ds.study.iitm.ac.in"
+          echo "Program  : IIT Madras BS Data Science"
+          echo "Run ID   : ${{ github.run_id }}"
+          echo "Triggered: ${{ github.event_name }}"
+          echo "================================"
+
+      - name: Verify portfolio page
+        run: |
+          echo "Portfolio: https://amit2122005gautam.github.io/iitm-portfolio/"
+          echo "Action completed successfully!"
